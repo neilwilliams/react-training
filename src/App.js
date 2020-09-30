@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
+import LeagueTable from "./LeagueTable";
+import Beer from "./Beer";
+import QuoteGenerator from "./QuoteGenerator";
+
+export default function App() {
+  const greeting = () => {
+    return "Hello";
+  };
+  const name = "Neil";
+  const hobbies = ["Running", "Cycling"];
+  const paragraph = "I also love my red wine - a bit too much.";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <>
+      <div className="container">
+        <h1 className="display-4 mt-4 mb-4">React app</h1>
+        <hr />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {greeting()}, my name is {name}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <p>My hobbies include:</p>
+        <ul>
+          {hobbies.map((hobbie, index) => (
+            <li key={`${hobbie}${index}`}>{hobbie}</li>
+          ))}
+        </ul>
+        <p>{paragraph}</p>
+
+        <h2>League table</h2>
+        <LeagueTable />
+
+        <h2>My beer</h2>
+        <Beer />
+
+        <h2>Quote generator</h2>
+        <QuoteGenerator />
+      </div>
+    </>
   );
 }
-
-export default App;
