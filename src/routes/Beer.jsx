@@ -63,11 +63,12 @@ const BeerForm = (props) => {
   );
 };
 
-const Beer = () => {
+export const Beer = () => {
   const [beers, setBeers] = useState([]);
 
   return (
     <>
+      <h2>Beer app</h2>
       <BeerForm
         addBeer={(beer) => {
           setBeers([...beers, beer]);
@@ -77,5 +78,3 @@ const Beer = () => {
     </>
   );
 };
-
-export default Beer;

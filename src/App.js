@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { About, Home, Contact } from "./routes";
+import { Counter, Home, Beer } from "./routes";
 
 export default function App() {
   return (
@@ -16,10 +16,10 @@ export default function App() {
             <a href="/home">Home</a>
           </li>
           <li>
-            <a href="/contact">Contact</a>
+            <a href="/beer">Beer</a>
           </li>
           <li>
-            <a href="/about">About</a>
+            <a href="/counter">Counter</a>
           </li>
         </ul>
 
@@ -27,11 +27,11 @@ export default function App() {
           <Route exact path={["/", "/home"]}>
             <Home />
           </Route>
-          <Route path="/about">
-            <About />
+          <Route path="/counter">
+            <Counter />
           </Route>
-          <Route path="/contact">
-            <Contact />
+          <Route path="/beer">
+            <Beer />
           </Route>
         </Switch>
       </div>

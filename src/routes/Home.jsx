@@ -1,7 +1,6 @@
 import React from "react";
 
 import LeagueTable from "../LeagueTable";
-import Beer from "../Beer";
 import QuoteGenerator from "../QuoteGenerator";
 
 export const Home = () => {
@@ -28,9 +27,6 @@ export const Home = () => {
 
       <h2>League table</h2>
       <LeagueTable />
-
-      <h2>My beer</h2>
-      <Beer />
 
       <h2>Quote generator</h2>
       <QuoteGenerator />

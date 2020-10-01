@@ -1,3 +1,3 @@
 export { Home } from "./Home";
-export { About } from "./About";
-export { Contact } from "./Contact";
+export { Counter } from "./Counter";
+export { Beer } from "./Beer";
