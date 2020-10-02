@@ -1,4 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
+
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  function getBeers() {
+    return state.beers || [];
+  }
+
+  switch (action.type) {
+    case "set_beers":
+      return { beers: [...action.payload] };
+    case "add_beer":
+      return { beers: [...getBeers(), action.payload] };
+    case "remove_beer":
+      const newBeers = [...getBeers()];
+      newBeers.pop(action.payload);
+      return { beers: newBeers };
+    default:
+      throw new Error(`No action found for: ${action}`);
+  }
+}
+
+export const Beer = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  // const [beers, setBeers] = useState([]);
+
+  // did mount
+  useEffect(() => {
+    const beerStorage = localStorage.getItem("beers");
+    if (beerStorage) {
+      dispatch({ type: "set_beers", payload: JSON.parse(beerStorage) });
+    }
+  }, []);
+
+  // did update
+  useEffect(() => {
+    if (state.beers) {
+      localStorage.setItem("beers", JSON.stringify(state.beers));
+    }
+  });
+
+  return (
+    <>
+      <h2>Beer app</h2>
+      <BeerForm
+        addBeer={(beer) => {
+          dispatch({ type: "add_beer", payload: beer });
+        }}
+      />
+      <BeerList beers={state.beers} />
+    </>
+  );
+};
 
 const BeerList = (props) => {
   const { beers } = props;
@@ -60,21 +113,5 @@ const BeerForm = (props) => {
         </div>
       )}
     </form>
-  );
-};
-
-export const Beer = () => {
-  const [beers, setBeers] = useState([]);
-
-  return (
-    <>
-      <h2>Beer app</h2>
-      <BeerForm
-        addBeer={(beer) => {
-          setBeers([...beers, beer]);
-        }}
-      />
-      <BeerList beers={beers} />
-    </>
   );
 };
